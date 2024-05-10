@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Sharp Grotesk';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(/src/assets/fonts/Grostrek/SharpGroteskPETrialBlack-05-BF646589e025c12.ttf) format('ttf');
+  }
+}
