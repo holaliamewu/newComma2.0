@@ -6,6 +6,6 @@
   @font-face {
     font-family: 'Sharp Grotesk bold';
     src: local("SharpGrotesk-Black05"),
-    url("./src/assets/fonts/sharpGrotesk/SharpGrotesk-SemiBold20.otf") format(opentype)
+    url("./src/assets/fonts/sharpGrotesk/SharpGrotesk-SemiBold20.otf") format("opentype")
   }
 }
