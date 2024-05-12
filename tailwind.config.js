@@ -16,7 +16,12 @@ export default {
     backgroundImage: {
       'hero-pattern': "url('/img/hero-pattern.svg')",
       'footer-texture': "url('/img/footer-texture.png')",
-    },
+    },extend: {
+      fontFamily: {
+        SharpGroteskBold: ['Sharp Grotesk bold'],
+        SystemUi: ['system-ui']
+      }
+    }
   },
   plugins: [],
 }

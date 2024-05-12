@@ -4,10 +4,8 @@
 
 @layer base {
   @font-face {
-    font-family: 'Sharp Grotesk';
-    font-style: normal;
-    font-weight: 900;
-    font-display: swap;
-    src: url(/src/assets/fonts/Grostrek/SharpGroteskPETrialBlack-05-BF646589e025c12.ttf) format('ttf');
+    font-family: 'Sharp Grotesk bold';
+    src: local("SharpGrotesk-Black05"),
+    url("./src/assets/fonts/sharpGrotesk/SharpGrotesk-SemiBold20.otf") format(opentype)
   }
 }
