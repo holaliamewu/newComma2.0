@@ -5,6 +5,7 @@ import Feed from "./pages/Feed";
 import GetStarted from "./pages/GetStarted";
 import Explore from "./pages/Explore";
 import Jobs from "./pages/Jobs";
+import Error from "./pages/Error";
 
 export default function App() {
   
@@ -21,6 +22,7 @@ return(
             <Route path="/explore" element={ <Explore /> } />
             <Route path="/jobs" element={ <Jobs /> } />
           </Route>
+          <Route path="*" element={ <Error /> } />
         </Routes>
       </BrowserRouter>
     ) : (<GetStarted />)
