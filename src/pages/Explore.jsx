@@ -12,7 +12,7 @@ export default function Explore() {
   return (
     <div className='w-[100%]'>
     <div className='pt-[16px] px-[12px]' >
-        <h1 className=' text-[90px]  font-SharpGroteskBold pt-[63px]   ' >Comma Community</h1>
+        <h1 className=' text-[90px]  font-SharpGroteskBold font-bold pt-[63px]   ' >Comma Community</h1>
         <span className='flex w-fit h-[53px] bg-[#f4f4f5] p-[6px] rounded-full mt-[24px] mb-[56px] ' >
             <NavLink 
             style={
