@@ -21,8 +21,8 @@ return(
             <Route index element={ <Feed /> } />
             <Route path="/explore" element={ <Explore /> } />
             <Route path="/jobs" element={ <Jobs /> } />
+            <Route path="*" element={ <Error /> } />
           </Route>
-          <Route path="*" element={ <Error /> } />
         </Routes>
       </BrowserRouter>
     ) : (<GetStarted />)

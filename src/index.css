@@ -9,3 +9,13 @@
     url("../public/fonts/sharpGrotesk/SharpGrotesk-Medium20.otf") format("opentype")
   }
 }
+
+@font-face {
+  font-family: 'San Francisco Pro';
+  src: local('SFProDisplay-Medium'),
+      url('../public/fonts/SFpro/SFProDisplay-Medium.woff2') format('woff2'),
+      url('../public/fonts/SFpro/SFProDisplay-Medium.woff') format('woff'),
+      url('../public/fonts/SFpro/SFProDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
