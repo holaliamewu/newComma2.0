@@ -19,6 +19,7 @@ export default {
     },extend: {
       fontFamily: {
         SharpGroteskBold: ['Sharp Grotesk bold'],
+        SharpGroteskBlack: ['Sharp Grotesk black'],
         SFpro: ['San Francisco Pro'],
         SystemUi: ['system-ui']
       }

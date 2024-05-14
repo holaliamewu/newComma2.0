@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Feed from "./pages/Feed";
@@ -7,11 +7,17 @@ import Explore from "./pages/Explore";
 import Jobs from "./pages/Jobs";
 import Error from "./pages/Error";
 
+export const SignInContext = createContext();
+export const WhereOnTheAppContext = createContext();
+
 export default function App() {
   
-  const [ isSignedIn, setSetIsSignedIn ] = useState(true);
+  const [ isSignedIn, setSetIsSignedIn ] = useState(false);
+  const [ whereOnTheApp, setWhereOnTheApp ] = useState('home')
 
 return(
+<SignInContext.Provider value={[isSignedIn, setSetIsSignedIn ]} >
+<WhereOnTheAppContext.Provider value={[whereOnTheApp, setWhereOnTheApp ]} >
   <div className="" >
   {
     isSignedIn ? (
@@ -28,4 +34,6 @@ return(
     ) : (<GetStarted />)
   }
   </div>
+</WhereOnTheAppContext.Provider>
+</SignInContext.Provider>
 )}

@@ -5,13 +5,13 @@ import { NewCommaWhiteSVG, NewCommaCommaSVG } from '../assets/svgs'
 
 export default function GetStarted() {
 
-  const [ userStatus, setUserStatus ] = useState('')
+  const [ userStatus, setUserStatus ] = useState('new')
 
   function handleChange() {
     console.log('something happened!')
   }
   return (
-    <div className='flex gap-[20px] '>
+    <div className='flex gap-[20px] font-SystemUi '>
     <div 
     style={{
       backgroundImage: `url(https://newcomma.com/images/naki2.webp)`
@@ -22,18 +22,21 @@ export default function GetStarted() {
       <NewCommaWhiteSVG />
     </div>
 
-    <div className='flex flex-col px-[2%] gap-[48px] justify-center' >
+    <div className='flex flex-col px-[2%] gap-[48px] justify-center w-full' >
       
     <span className='xs:inline-block md:hidden w-[100px] pt-[24px] ' >
         <img  src={mobileLogo} />
       </span>
     <span>
-      <h1 className="font-['Sharp Grotesk'] font-black text-[52px] mb-[8px]" >GET STARTED</h1>
-        <h4 className='text-[14px] text-[#a1a1aa] ' >Enter your email to continue</h4>
+      <h1 className="font-SharpGroteskBlack text-[52px] mb-[8px]" >GET STARTED</h1>
+        <h4 className='text-[14px] font-SFpro text-[#a1a1aa] ' >
+        {
+          userStatus === 'new' ? 'Enter the rest of your details to ' :
+        userStatus === 'old' ? 'Enter your Password to ' : 'Enter your Email to ' }<span className='text-[#222] font-semibold'>{ userStatus === 'new' ? 'Sign up' : userStatus === 'old' ? 'Sign in' : 'Continue'}</span></h4>
     </span>
 
-      <form className='flex flex-col gap-[20px]' >
-        <span className='flex flex-col gap-[5px] ' >
+      <form className='flex flex-col gap-[20px] w-full' >
+        <span className='flex flex-col gap-[5px] w-full ' >
           <label 
           className='w-full text-[14px]' 
           htmlFor='email' >Email</label>
@@ -109,12 +112,12 @@ export default function GetStarted() {
                   <p className="text-[12px] leading-[1.2] " >By ticking this box, you agree to receive email communications from NewComma</p>
                   </span>
 
-                  <p className="text-[13px] text-[#a1a1aa] leading-[1.7]" >
+                  <p className="text-[13px] text-[#a1a1aa] font-SFpro leading-[1.7]" >
                   By clicking Create Account, I agree that I have read and accepted the <span className="text-[#27272a]" >Terms of Use</span> and <span className="text-[#27272a]" >Privacy Policy</span>
                   </p></>
                  ): "" }
       <span className="flex" >
-          <button className='flex items-center justify-center w-fit gap-[8px] h-[40px] px-[24px] rounded-[24px] bg-[#ffcb00] ' >
+          <button className='flex items-center justify-center font-SFpro w-fit gap-[8px] h-[40px] px-[24px] rounded-[24px] bg-[#ffcb00] ' >
             <NewCommaCommaSVG />
             <h3 className='font-bold'>
             {
