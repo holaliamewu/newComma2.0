@@ -6,6 +6,8 @@ import GetStarted from "./pages/GetStarted";
 import Explore from "./pages/Explore";
 import Jobs from "./pages/Jobs";
 import Error from "./pages/Error";
+import Notifications from "./pages/Notifications";
+import Chat from "./pages/Chat";
 
 export const SignInContext = createContext();
 export const WhereOnTheAppContext = createContext();
@@ -13,7 +15,7 @@ export const WhereOnTheAppContext = createContext();
 export default function App() {
   
   const [ isSignedIn, setSetIsSignedIn ] = useState(false);
-  const [ whereOnTheApp, setWhereOnTheApp ] = useState('home')
+  const [ whereOnTheApp, setWhereOnTheApp ] = useState('feed')
 
 return(
 <SignInContext.Provider value={[isSignedIn, setSetIsSignedIn ]} >
@@ -27,6 +29,8 @@ return(
             <Route index element={ <Feed /> } />
             <Route path="/explore" element={ <Explore /> } />
             <Route path="/jobs" element={ <Jobs /> } />
+            <Route path="/notications" element={ <Notifications /> } />
+            <Route path="/chat" element={ <Chat /> } />
             <Route path="*" element={ <Error /> } />
           </Route>
         </Routes>
