@@ -261,7 +261,8 @@ export default function GetStarted() {
             <button className='flex items-center justify-center font-bold font-SFpro w-fit gap-[8px] h-[40px] px-[24px] rounded-[24px] bg-[#fff] ' >Forgot Password </button>
           }
           { userStatus === '' &&
-            <button className='flex items-center justify-center border text-[#222] border-[#fccb00] font-SFpro font-[600] w-fit h-[40px] px-[24px] rounded-[24px] bg-[#fff]' >Continue with Google instead</button>
+            <button 
+            className='flex items-center justify-center border text-[#222] border-[#fccb00] font-SFpro font-[600] w-fit h-[40px] px-[24px] rounded-[24px] bg-[#fff]' >Continue with Google</button>
           }
       </span>
       </form>
