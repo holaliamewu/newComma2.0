@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BellSVG, MenuSVG, NewCommaAshCommaSVG, NewCommaBetaSVG } from '../assets/svgs'
 import Navs from './Navs'
+import { ProfilePhotoContext } from '../pages/Layout'
 
 export default function Navbar() {
+
+  const [ profilePhoto, setProfilePhoto ] = useContext(ProfilePhotoContext)
   return (
     <header className='flex md:sticky top-0 bg-white justify-between items-center px-[2%] mx-auto py-[16px] border-b '>
       <NewCommaBetaSVG /> 
@@ -22,7 +25,7 @@ export default function Navbar() {
          </span>
 
           <span className='xs:hidden md:flex items-center justify-center bg-[#f5f5f4] rounded-full w-[32px] h-[32px] box-border px-[1px] border ' >
-            <NewCommaAshCommaSVG />
+            <img src={profilePhoto} alt='newComma default dp' />
           </span>
 
       </span>

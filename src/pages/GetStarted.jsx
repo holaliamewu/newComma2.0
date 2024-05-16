@@ -3,22 +3,14 @@ import mobileLogo from '../assets/pics/logo.png'
 import { NewCommaWhiteSVG, NewCommaCommaSVG } from '../assets/svgs'
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from '../config/firebase'
-import { SignInContext } from '../App';
+import { FormContext, SignInContext } from '../App';
 import { ref, push, set, query, get } from 'firebase/database';
 
 
 export default function GetStarted() {
   const [isSignedIn, setIsSignedIn ] = useContext(SignInContext)
   const [ userStatus, setUserStatus ] = useState('');
-  const [ form, setForm ] = useState({
-    email: '',
-    firstName: '',
-    lastName: '',
-    username: '',
-    password: '',
-    newPassword: '',
-    consent: true
-  });
+  const [ form, setForm ] = useContext(FormContext)
   const [ error, setError ] = useState({ email: ''});
 
   function saveUserData() {
@@ -73,7 +65,9 @@ export default function GetStarted() {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
+      setIsSignedIn(true)
     } else {
+      setIsSignedIn(false)
     }
   });
 

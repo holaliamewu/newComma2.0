@@ -8,18 +8,29 @@ import Jobs from "./pages/Jobs";
 import Error from "./pages/Error";
 import Notifications from "./pages/Notifications";
 import Chat from "./pages/Chat";
+import { FacebookAuthProvider } from "firebase/auth/cordova";
 
 export const SignInContext = createContext();
 export const WhereOnTheAppContext = createContext();
-
+export const FormContext = createContext();
 export default function App() {
   
   const [ isSignedIn, setSetIsSignedIn ] = useState(false);
   const [ whereOnTheApp, setWhereOnTheApp ] = useState('feed')
+  const [ form, setForm ] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    username: '',
+    password: '',
+    newPassword: '',
+    consent: true
+  });
 
 return(
 <SignInContext.Provider value={[isSignedIn, setSetIsSignedIn ]} >
 <WhereOnTheAppContext.Provider value={[whereOnTheApp, setWhereOnTheApp ]} >
+<FormContext.Provider value={[ form, setForm ]} >
   <div className="" >
   {
     isSignedIn ? (
@@ -38,6 +49,7 @@ return(
     ) : (<GetStarted />)
   }
   </div>
+</FormContext.Provider>
 </WhereOnTheAppContext.Provider>
 </SignInContext.Provider>
 )}
