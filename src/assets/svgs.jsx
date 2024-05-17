@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { WhereOnTheAppContext } from '../App'
 import classNames from 'classnames'
+import { BookmarkContext, CommentContext, LikeContext } from '../pages/Layout'
 
 
 export function  NewCommaWhiteSVG() {
@@ -143,6 +144,44 @@ export function  NewCommaWhiteSVG() {
               )
           }
           
+          export  function LikeSVG() {
+            const [ like, setLike ] = useContext(LikeContext);
+
+            return (
+              <span className='w-[18px]' >
+                <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill={ like ? '#fccb00' : 'white'} stroke={ like ? '#fccb00' : 'currentColor'}  stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              </span>
+            )
+          }
+         
+          export  function CommentSVG() {
+            const [ comment, setComment ] =  useContext(CommentContext);
+
+            return (
+              <span className='w-[18px]' >
+              <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill={ comment ? 'black' : 'white' } stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-text"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></svg>              
+              </span>
+             )
+          }
+          
+          export  function BookmarkSVG() {
+            const [ bookmark, setBookmark ] = useContext(BookmarkContext);
+
+            return (
+              <span className='w-[18px]' >
+                <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill={ bookmark ? 'black' : 'white'} stroke={ bookmark ? 'white' : 'black' } stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark-minus"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/><line x1="15" x2="9" y1="10" y2="10"/></svg>
+               </span>
+              )
+          }
+          
+          export  function MoreSVG() {
+            return (
+              <span className='w-[20px]' >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M5 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2ZM19 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2ZM12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Z" stroke="#a8a29e" stroke-width="1.5"></path></svg>
+              </span>
+              )
+          }
+          
           export  function NewCommaBetaSVG() {
             return (
               <span className='w-[157px] ' >
@@ -158,9 +197,10 @@ export function  NewCommaWhiteSVG() {
           }
 
           export function BellSVG() {
+            const [ whereOnTheApp, setWhereOnTheApp ] = useContext(WhereOnTheAppContext)
             return(
               <span className='xs:w-[20px] md:w-[24px] ' >
-               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M12 6.44v3.33M12.02 2C8.34 2 5.36 4.98 5.36 8.66v2.1c0 .68-.28 1.7-.63 2.28l-1.27 2.12c-.78 1.31-.24 2.77 1.2 3.25a23.34 23.34 0 0 0 14.73 0 2.22 2.22 0 0 0 1.2-3.25l-1.27-2.12c-.35-.58-.63-1.61-.63-2.28v-2.1C18.68 5 15.68 2 12.02 2Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path><path d="M15.33 18.82c0 1.83-1.5 3.33-3.33 3.33-.91 0-1.75-.38-2.35-.98-.6-.6-.98-1.44-.98-2.35" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path></svg>
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill='none'><path d="M12 6.44v3.33M12.02 2C8.34 2 5.36 4.98 5.36 8.66v2.1c0 .68-.28 1.7-.63 2.28l-1.27 2.12c-.78 1.31-.24 2.77 1.2 3.25a23.34 23.34 0 0 0 14.73 0 2.22 2.22 0 0 0 1.2-3.25l-1.27-2.12c-.35-.58-.63-1.61-.63-2.28v-2.1C18.68 5 15.68 2 12.02 2Z" stroke='currentColor' stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path><path d="M15.33 18.82c0 1.83-1.5 3.33-3.33 3.33-.91 0-1.75-.38-2.35-.98-.6-.6-.98-1.44-.98-2.35" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path></svg>
               </span>
             )
           }

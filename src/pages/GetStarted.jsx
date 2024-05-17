@@ -3,14 +3,16 @@ import mobileLogo from '../assets/pics/logo.png'
 import { NewCommaWhiteSVG, NewCommaCommaSVG } from '../assets/svgs'
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from '../config/firebase'
-import { FormContext, SignInContext } from '../App';
+import { FormContext, SignInContext, WhereOnTheAppContext } from '../App';
 import { ref, push, set, query, get } from 'firebase/database';
+import { redirect } from 'react-router';
 
 
 export default function GetStarted() {
   const [isSignedIn, setIsSignedIn ] = useContext(SignInContext)
-  const [ userStatus, setUserStatus ] = useState('');
+  const [ whereOnTheApp, setWhereOnTheApp ] = useContext(WhereOnTheAppContext);
   const [ form, setForm ] = useContext(FormContext)
+  const [ userStatus, setUserStatus ] = useState('');
   const [ error, setError ] = useState({ email: ''});
 
   function saveUserData() {
@@ -66,6 +68,7 @@ export default function GetStarted() {
     if (user) {
       const uid = user.uid;
       setIsSignedIn(true)
+      redirect("/")
     } else {
       setIsSignedIn(false)
     }
@@ -154,7 +157,7 @@ export default function GetStarted() {
           name='email' 
           value={form.email}
           onChange={ handleChange } 
-          className=' border-b  ' />
+          className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
           { error.email && !form.email &&
             <p className='text-red-400 text-[14px] font-SystemUi' >{error.email}</p>
           }
@@ -170,7 +173,7 @@ export default function GetStarted() {
               name='password' 
               value={form.password}
               onChange={ handleChange } 
-              className=' border-b  ' />
+              className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
               </span>      
 
           ) :
@@ -186,7 +189,7 @@ export default function GetStarted() {
                   name='firstName' 
                   value={form.firstName}
                   onChange={ handleChange } 
-                  className=' border-b  ' />
+                  className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
                   </span>      
               <span className='flex flex-col gap-[5px] w-[50%] ' >
                   <label 
@@ -197,7 +200,7 @@ export default function GetStarted() {
                   name='lastName' 
                   value={form.lastName}
                   onChange={ handleChange } 
-                  className=' border-b  ' />
+                  className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
                   </span>      
             </span>
               <span className='flex flex-col gap-[5px] ' >
@@ -209,7 +212,7 @@ export default function GetStarted() {
                   name='username' 
                   value={form.username}
                   onChange={ handleChange } 
-                  className=' border-b  ' />
+                  className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
                   </span>      
               <span className='flex flex-col gap-[5px] ' >
                   <label 
@@ -220,14 +223,14 @@ export default function GetStarted() {
                   name='newPassword' 
                   value={form.newPassword}
                   onChange={ handleChange }
-                  className=' border-b  ' />
+                  className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
                   </span>      
                   <span className="flex gap-[8px]">
                   <input 
                   type='checkbox' 
                   name='consent'
                   checked={form.consent}
-                  className=" size-[17px]" />
+                  className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
                   <p className="text-[12px] leading-[1.2] " >By ticking this box, you agree to receive email communications from NewComma</p>
                   </span>
 

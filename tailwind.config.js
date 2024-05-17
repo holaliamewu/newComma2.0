@@ -22,6 +22,15 @@ export default {
         SharpGroteskBlack: ['Sharp Grotesk black'],
         SFpro: ['San Francisco Pro'],
         SystemUi: ['system-ui']
+      },
+      colors: {
+        gray: '#F5F8F9',
+        ash: '#d7d7d7',
+        usernameColor: '#52525b',
+        connectUsername: '#353546',
+        newOrange: '#f97316',
+        h1PostConnect: '#27272a',
+        otherusernameAndTime: '#71717a'
       }
     }
   },

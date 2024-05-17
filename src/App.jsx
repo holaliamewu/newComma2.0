@@ -8,7 +8,6 @@ import Jobs from "./pages/Jobs";
 import Error from "./pages/Error";
 import Notifications from "./pages/Notifications";
 import Chat from "./pages/Chat";
-import { FacebookAuthProvider } from "firebase/auth/cordova";
 
 export const SignInContext = createContext();
 export const WhereOnTheAppContext = createContext();
@@ -40,8 +39,8 @@ return(
             <Route index element={ <Feed /> } />
             <Route path="/explore" element={ <Explore /> } />
             <Route path="/jobs" element={ <Jobs /> } />
-            <Route path="/notications" element={ <Notifications /> } />
-            <Route path="/chat" element={ <Chat /> } />
+            <Route path="/notifications" element={ <Notifications /> } />
+            <Route path="/chats" element={ <Chat /> } />
             <Route path="*" element={ <Error /> } />
           </Route>
         </Routes>
