@@ -9,7 +9,7 @@ import Error from "./pages/Error";
 import Notifications from "./pages/Notifications";
 import Chat from "./pages/Chat";
 
-export const SignInContext = createContext();
+export const SignInContext = createContext(); 
 export const WhereOnTheAppContext = createContext();
 export const FormContext = createContext();
 export default function App() {
