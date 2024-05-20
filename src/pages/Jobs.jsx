@@ -2,6 +2,7 @@ import React from 'react'
 import { MagnifyingGlassSVG } from '../assets/svgs'
 import SearchNavbar from '../components/SearchNavbar'
 import Footer from '../components/Footer'
+import JobListings from '../components/JobListings'
 
 export default function Jobs() {
   return (
@@ -22,7 +23,8 @@ export default function Jobs() {
             <input type='text' name='jobSearchBox' placeholder='Search jobs by keyword' className=' font-semibold text-[#888888] font-SFpro ' />
           </span>
           <SearchNavbar />
-        </span>
+          </span>
+          <JobListings />
       </div>
       <Footer />
     </div>

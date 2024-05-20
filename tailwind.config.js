@@ -24,7 +24,6 @@ export default {
         SystemUi: ['system-ui']
       },
       colors: {
-        gray: '#F5F8F9',
         ash: '#d7d7d7',
         usernameColor: '#52525b',
         connectUsername: '#353546',

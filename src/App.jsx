@@ -14,7 +14,7 @@ export const WhereOnTheAppContext = createContext();
 export const FormContext = createContext();
 export default function App() {
   
-  const [ isSignedIn, setSetIsSignedIn ] = useState(false);
+  const [ isSignedIn, setSetIsSignedIn ] = useState(true);
   const [ whereOnTheApp, setWhereOnTheApp ] = useState('feed')
   const [ form, setForm ] = useState({
     email: '',

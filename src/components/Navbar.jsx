@@ -14,7 +14,7 @@ export default function Navbar() {
 
 
   return (
-    <header className='flex md:sticky top-0 bg-white justify-between items-center px-[2%] mx-auto py-[16px] border-b border-b-[lightgray] z-10'>
+    <header className='flex md:sticky top-0 bg-white justify-between items-center px-[2%] mx-auto py-[16px] border-b border-b-gray-200 z-10'>
      <NavLink className='flex' to='/' >
       <NewCommaBetaSVG /> 
      </NavLink>

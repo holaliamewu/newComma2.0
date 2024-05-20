@@ -101,7 +101,7 @@ export function  NewCommaWhiteSVG() {
             const [ whereOnTheApp, setWhereOnTheApp ] = useContext(WhereOnTheAppContext);
             return (
               <span className='xs:w-[20px] md:w-[24px]' >
-                <svg className={classNames( whereOnTheApp === 'explore' ? 'fill-black stroke-none' : 'fill-none stroke-current')} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path className={classNames( whereOnTheApp === 'explore' ? 'fill-black stroke-none' : 'fill-none stroke-current')} d="M17.8 2.1 7.87 4.59c-1.45.36-2.92 1.83-3.28 3.28L2.1 17.8c-.75 3 1.09 4.85 4.1 4.1l9.93-2.48c1.44-.36 2.92-1.84 3.28-3.28L21.9 6.2c.75-3-1.1-4.85-4.1-4.1Z" stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path className={classNames( whereOnTheApp === 'explore' ? 'fill-black stroke-none' : 'fill-none stroke-black')} d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>            
+                <svg className={classNames( whereOnTheApp === 'explore' ? 'fill-black stroke-none' : 'fill-none stroke-current')} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path className={classNames( whereOnTheApp === 'explore' ? 'fill-black stroke-none' : 'fill-none stroke-current')} d="M17.8 2.1 7.87 4.59c-1.45.36-2.92 1.83-3.28 3.28L2.1 17.8c-.75 3 1.09 4.85 4.1 4.1l9.93-2.48c1.44-.36 2.92-1.84 3.28-3.28L21.9 6.2c.75-3-1.1-4.85-4.1-4.1Z" stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path className={classNames( whereOnTheApp === 'explore' ? 'fill-white stroke-none' : 'fill-none stroke-black')} d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>            
                 </span>
               )
           }
@@ -230,3 +230,27 @@ export function  NewCommaWhiteSVG() {
             )
           }
           
+          export function TimeSVG () {
+            return(
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M20.75 13.25c0 4.83-3.92 8.75-8.75 8.75s-8.75-3.92-8.75-8.75S7.17 4.5 12 4.5s8.75 3.92 8.75 8.75ZM12 8v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 2h6" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            )
+          }
+          export function LocationSVG () {
+            return(
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M12 13.43a3.12 3.12 0 1 0 0-6.24 3.12 3.12 0 0 0 0 6.24Z" stroke="currentColor" stroke-width="1.5"></path><path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 0 1-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05Z" stroke="currentColor" stroke-width="1.5"></path></svg>            )
+          }
+          export function Jobs2SVG () {
+            return(
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M12 18.2a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.25 12.95v.93c0 .35-.18.68-.49.86l-.76.46" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 22h8c4.02 0 4.74-1.61 4.95-3.57l.75-8C21.97 7.99 21.27 6 17 6H7c-4.27 0-4.97 1.99-4.7 4.43l.75 8C3.26 20.39 3.98 22 8 22ZM8 6v-.8C8 3.43 8 2 11.2 2h1.6C16 2 16 3.43 16 5.2V6" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21.65 11a16.335 16.335 0 0 1-5.64 2.64M2.62 11.27c1.67 1.14 3.49 1.95 5.38 2.41" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            )
+          }
+          // export function TimeFunction () {
+          //   return(
+
+          //   )
+          // }
+          // export function TimeFunction () {
+          //   return(
+
+          //   )
+          // }
