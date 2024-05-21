@@ -6,9 +6,8 @@ import { WhereOnTheAppContext } from '../App'
 export default function Navs() {
 
   const [ whereOnTheApp, setWhereOnTheApp ] = useContext(WhereOnTheAppContext)
-  console.log(whereOnTheApp)
   return (
-    <nav className='flex xs:w-[100%] bg-white  md:w-fit xs:h-[60px] md:h-fit  xs:border-t md:border-t-0 xs:border-t-[#f4f4f5] xs:fixed  md:relative bottom-0 left-0 px-[12px] md:gap-[16px] xs:justify-between md:justify-normal ' >
+    <nav className='flex xs:w-[100%] bg-white  md:w-fit xs:h-[60px] md:h-fit  xs:border-t md:border-t-0 xs:border-t-[#f4f4f5] xs:fixed  md:relative bottom-0 left-0 px-[12px] md:gap-[16px] xs:justify-between md:justify-normal z-30 ' >
           <NavLink 
           to='/' 
           onClick={ ({isActive}) => {

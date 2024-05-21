@@ -36,7 +36,9 @@ export default function Navbar() {
         <BellSVG />
       </NavLink>
 
-        <span className=' items-center justify-center xs:flex md:hidden w-[24px] text-[black]  ' >
+        <span 
+        onClick={ () => { setShowMiniMenu(prev => !prev)}}
+        className=' items-center justify-center xs:flex md:hidden w-[24px] text-[black]  ' >
                 <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHlsZT0iZmxleC1zaHJpbms6IDA7Ij48cGF0aCBkPSJNMyA3aDE4TTMgMTJoMThNMyAxN2gxOCIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48L3N2Zz4=' />
          </span>
 
