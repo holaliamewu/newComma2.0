@@ -1,15 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import { BookmarkContext, CommentContext, LikeContext, ProfilePhotoContext } from './Layout';
+import { BookmarkContext, CommentContext, JobsContext, LikeContext, ProfilePhotoContext, UsersContext } from './Layout';
 import { FormContext, WhereOnTheAppContext } from '../App';
-import { MoreSVG, BookmarkSVG, CommentSVG, GifSVG, ImageSVG, LikeSVG, SmileySVG } from '../assets/svgs';
-import { jobs, users } from '../api';
+import {  GifSVG, ImageSVG, SmileySVG } from '../assets/svgs';
 import Posts from '../components/Posts';
 
 export default function Feed() {
 
-  const date = new Date();
-  const currentYear = date.getFullYear();
   const [ profilePhoto, setProfilePhoto ] = useContext(ProfilePhotoContext);
   const [ form, setForm ] = useContext(FormContext);
 
@@ -17,6 +14,8 @@ export default function Feed() {
   const [ comment, setComment ] = useContext(CommentContext);
   const [ bookmark, setBookmark ] = useContext(BookmarkContext);
   const [ whereOnTheApp, setWhereOnTheApp ] = useContext(WhereOnTheAppContext);
+  const [ users, setUsers ] = useContext(UsersContext)
+  const [ jobs, setJobs ] = useContext(JobsContext)
 
 
   return (
@@ -47,8 +46,8 @@ export default function Feed() {
             </span>
             <span className='flex justify-between w-full'>
               <span className='flex flex-col'>
-                <h3 className='text-[16px] font-SFpro'>{users[0].name}</h3>
-                <h5 className='text-[14px] text-connectUsername font-SystemUi'>@{users[0].username}</h5>
+                <h3 className='text-[16px] font-SFpro'>{users[0]?.name}</h3>
+                <h5 className='text-[14px] text-connectUsername font-SystemUi'>@{users[0]?.username}</h5>
               </span>
               <NavLink className='flex items-center justify-center h-[32px] text-[14px] font-SFpro px-[16px] rounded-full border border-[#e7e7e7]'>Connect</NavLink>
             </span>
@@ -60,8 +59,8 @@ export default function Feed() {
             </span>
             <span className='flex justify-between w-full'>
               <span className='flex flex-col'>
-                <h3 className='text-[16px] font-SFpro'>{users[1].name}</h3>
-                <h5 className='text-[14px] text-connectUsername font-SystemUi'>@{users[1].username}</h5>
+                <h3 className='text-[16px] font-SFpro'>{users[1]?.name}</h3>
+                <h5 className='text-[14px] text-connectUsername font-SystemUi'>@{users[1]?.username}</h5>
               </span>
               <NavLink className='flex items-center justify-center h-[32px] text-[14px] font-SFpro px-[16px] rounded-full border border-[#e7e7e7]'>Connect</NavLink>
             </span>
@@ -83,11 +82,11 @@ export default function Feed() {
             </span>
             <span className='flex justify-between w-full'>
               <span className='flex flex-col w-full'>
-              <h3 className='text-[16px] font-SFpro text-connectUsername'>{jobs[0].title}</h3>
+              <h3 className='text-[16px] font-SFpro text-connectUsername'>{jobs[0]?.title}</h3>
               <span className='flex items-center gap-1 ' >
-                  <h3 className='text-[13px] font-systemUI'>{jobs[0].company}</h3> — <h5 className='text-[13px] font-SystemUi'>{jobs[0].location}</h5>
+                  <h3 className='text-[13px] font-systemUI'>{jobs[0]?.company}</h3> — <h5 className='text-[13px] font-SystemUi'>{jobs[0]?.location}</h5>
               </span>
-              <span className='font-SystemUI text-[13px] mt-1' >{jobs[0].timePosted}</span>
+              <span className='font-SystemUI text-[13px] mt-1' >{jobs[0]?.timePosted}</span>
               </span>
             </span>
           </NavLink>

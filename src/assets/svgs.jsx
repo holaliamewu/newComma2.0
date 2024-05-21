@@ -266,13 +266,13 @@ export function  NewCommaWhiteSVG() {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M6 12h12M12 18V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>            )
           }
 
-          // export function TimeFunction () {
-          //   return(
-
-          //   )
-          // }
-          // export function TimeFunction () {
-          //   return(
-
-          //   )
-          // }
+          export function DownSVG() {
+            return(
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M19.92 8.95l-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"></path></svg>
+            )
+          }
+          export function FieldSVG() {
+            return(
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none"><path d="M13.93 15H4.9C3.08 15 1.92 13.05 2.8 11.45L5.13 7.21L7.31 3.24C8.22 1.59 10.6 1.59 11.51 3.24L13.7 7.21L14.75 9.12001L16.03 11.45C16.91 13.05 15.75 15 13.93 15Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22.5 15.5C22.5 19.09 19.59 22 16 22C12.41 22 9.5 19.09 9.5 15.5C9.5 15.33 9.51 15.17 9.52 15H13.93C15.75 15 16.91 13.05 16.03 11.45L14.75 9.12C15.15 9.04 15.57 9 16 9C19.59 9 22.5 11.91 22.5 15.5Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            )
+          }

@@ -1,13 +1,16 @@
-import React, { useContext } from 'react'
-import { users } from '../api'
-import { ProfilePhotoContext } from '../pages/Layout';
+import React, { useContext, useEffect, useState } from 'react'
+import { ProfilePhotoContext, UsersContext } from '../pages/Layout';
 import  { NavLink } from 'react-router-dom'
 
 export default function Connections() {
 
 const [ profilePhoto, setProfilePhoto ] = useContext(ProfilePhotoContext)
+const [ users, setUsers ] = useContext(UsersContext)
+
+
 
   const connectionsComponent = users.map( user => {
+     const { name, username, profession } = user;
     return(
       <section className='flex flex-col gap-[20px] shadow-sm rounded-[12px] py-[16px] px-[20px] border border-gray-100 ' >
       <span className="flex flex-col gap-[10px] " >
@@ -16,10 +19,10 @@ const [ profilePhoto, setProfilePhoto ] = useContext(ProfilePhotoContext)
         </NavLink>
         <span className='' >
           <span className='flex gap-[6px] ' >
-            <h3 className='text-[14px]  font-SharpGroteskBold' >{user.name}</h3>
-            <h5 className='text-[14px] text-[#71717a] font-SharpGroteskBold' >@{user.username}</h5>
+            <h3 className='text-[14px]  font-SharpGroteskBold' >{name}</h3>
+            <h5 className='text-[14px] text-[#71717a] font-SharpGroteskBold' >@{username}</h5>
           </span>
-          <p className='text-[14px] text-[#27272a] font-SystemUi' >{user.profession}</p>
+          <p className='text-[14px] text-[#27272a] font-SystemUi' >{profession}</p>
       </span>
           <span className='flex gap-[8px] ' >
             <span className='w-fit flex items-center justify-center font-SFpro text-[14px]  px-[16px] h-[32px] rounded-[24px] border border-gray-200 ' >Connect</span>

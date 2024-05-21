@@ -8,10 +8,17 @@ import Jobs from "./pages/Jobs";
 import Error from "./pages/Error";
 import Notifications from "./pages/Notifications";
 import Chat from "./pages/Chat";
+import ProfileLayout from "./pages/ProfileLayout";
+import ProfileFeed from './components/ProfileFeed'
+import ProfilePortfolio from './components/ProfilePortfolio'
+import ProfileAbout from './components/ProfileAbout'
+import ProfileBookmark from './components/ProfileBookmark'
+import ProfileConnections from './components/ProfileConnections'
 
 export const SignInContext = createContext(); 
 export const WhereOnTheAppContext = createContext();
 export const FormContext = createContext();
+
 export default function App() {
   
   const [ isSignedIn, setSetIsSignedIn ] = useState(true);
@@ -42,6 +49,13 @@ return(
             <Route path="/notifications" element={ <Notifications /> } />
             <Route path="/chats" element={ <Chat /> } />
             <Route path="*" element={ <Error /> } />
+            <Route path='/profile/:username' element={ <ProfileLayout /> } >
+                <Route index element={ <ProfileFeed /> } />
+                <Route path="/profile/:username/portfolio" element={ <ProfilePortfolio /> } />
+                <Route path="/profile/:username/bookmark" element={ <ProfileBookmark /> } />
+                <Route path="/profile/:username/about" element={ <ProfileAbout /> } />
+                <Route path="/profile/:username/connection" element={ <ProfileConnections /> } />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

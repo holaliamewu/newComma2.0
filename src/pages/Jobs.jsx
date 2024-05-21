@@ -17,7 +17,7 @@ export default function Jobs() {
       <div className='items-center ' >
         <span className='flex  bg-white shadow-gray-200 shadow-lg -mt-3 mx-auto xs:w-[94%] rounded-[8px] h-[48px] px-[12px]' >
           <span className='flex items-center gap-[8px] text-[16px] py-[5px] md:max-w-[30vw] ' >
-          <span className='' >
+          <span className='flex w-[18px] ' >
             <MagnifyingGlassSVG />
           </span>  
             <input type='text' name='jobSearchBox' placeholder='Search jobs by keyword' className=' font-semibold text-[#888888] font-SFpro ' />

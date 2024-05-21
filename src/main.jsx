@@ -1,10 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import "./index.css"
+import { makeServer } from './api'; 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+if (process.env.NODE_ENV === 'development') {
+  makeServer({ environment: 'development' });
+}
+
+ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-)
+  document.getElementById('root')
+);
