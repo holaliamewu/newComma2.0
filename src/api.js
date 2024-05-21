@@ -152,7 +152,7 @@ const posts = [
         postId: 2,
         timeMade:"1h" ,
         message: "Proud of you my sister @nakinarh.",
-        photos: "",
+        photos: "https://comma-uploads-production.s3.eu-west-2.amazonaws.com/H59LsazfAwZouNetYnV38QXm",
         comments: [
             {
                 person: "" ,

@@ -33,11 +33,11 @@ export default function Posts() {
                   </span>
                   <span className='flex' > <MoreSVG /> </span>
                 </span>
-                <span className='flex p-[16px] mb-[16px] px-[24px] w-full  border-b border-b-gray-100' >
+                <span className='flex flex-col p-[16px] mb-[16px] px-[24px] w-full  border-b border-b-gray-100' >
                   <p className='text-[#27272a]' >{post.message}</p>
-                  <span className='' >
-                  
-                  </span>
+                  { post.photos && <span className='' >
+                  <img className='' src={post.photos} />
+                  </span>}
                 </span>
                 <span className='flex items-center px-[24px] mb-[16px] gap-[12px] ' >
                   <span className='w-[32px] flex items-center justify-center' onClick={ handleLike( post )} > <LikeSVG /> </span>
