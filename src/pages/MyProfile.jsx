@@ -1,33 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { LocationSVG } from '../assets/svgs'
-import { NotificationsContext } from './Layout';
 
 export default function ProfileLayout() {
 
-    const { username } = useParams();
-    const [ currentProfile, setCurrentProfile ] = useState({});
-    const [ notifications, setNotifications ] = useContext(NotificationsContext)
+const currentProfile = {
+    name: "Amewu Emmanuel Mensah",
+    username: "holalia",
+    location: "Accra, Ghana",
+    profession: "frontend eng with a keen eye for aesthetics.",
+    website: "holalia.co.uk"
+}
 
-    useEffect( () => {
+    const { name, username, location, profession, website } = currentProfile;
 
-        const fetchParticulateProfile = async() => {
-            try{
-                const response = await fetch(`/api/users/username/${username}`)
-                if( !response.ok) {
-                    throw new Error("Error fetching this user's profile")
-                }
-                const data = await response.json();
-                setCurrentProfile(data.user)
-                console.log("current profile: " ,data)
-            } catch ( error ) {
-                console.error("Error fetching profile: ", error)
-            }
-        }
-
-        fetchParticulateProfile();
-    } ,[])
 
   return (
     <>
@@ -40,8 +27,6 @@ export default function ProfileLayout() {
                 <h2 className='text-[25px] font-SharpGroteskBold' >{currentProfile?.name}</h2>
                 <h5 className='text-[16px] font-SystemUi' >@{currentProfile?.username}</h5>
             </span>
-             
-            <button onClick={ () => { setNotifications([`You just made a connection with ${currentProfile.name}`, ...notifications])}} type="button" >{ currentProfile.connected ? "Connect" : "You're friends" }</button>
             <section className='flex mt-[30px] mb-[20px] gap-[16px] ' >
                 <span className='flex items-center ' >
                 <span className='flex w-[12px] ' >

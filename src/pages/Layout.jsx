@@ -12,6 +12,7 @@ export const MiniMenuContext = createContext();
 export const UsersContext = createContext();
 export const JobsContext = createContext();
 export const PostsContext = createContext();
+export const NotificationsContext = createContext();
 
 export default function Layout() {
 
@@ -23,6 +24,7 @@ export default function Layout() {
   const [ users, setUsers ] = useState( [])
   const [ jobs, setJobs ] = useState( [])
   const [ posts, setPosts ] = useState( [])
+  const [ notifications, setNotifications ] = useState( [])
 
 
   useEffect(() => {
@@ -90,10 +92,12 @@ export default function Layout() {
   <UsersContext.Provider value={[users, setUsers]} >
   <JobsContext.Provider value={[jobs, setJobs]} >
   <PostsContext.Provider value={[posts, setPosts]} >
+  <NotificationsContext.Provider value={[notifications, setNotifications]} >
     <div>
         <Navbar />
         <Outlet />
     </div>
+  </NotificationsContext.Provider>
   </PostsContext.Provider>
   </JobsContext.Provider>
   </UsersContext.Provider>

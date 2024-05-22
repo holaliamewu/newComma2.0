@@ -14,6 +14,7 @@ import ProfilePortfolio from './components/ProfilePortfolio'
 import ProfileAbout from './components/ProfileAbout'
 import ProfileBookmark from './components/ProfileBookmark'
 import ProfileConnections from './components/ProfileConnections'
+import MyProfile from './pages/MyProfile'
 
 export const SignInContext = createContext(); 
 export const WhereOnTheAppContext = createContext();
@@ -48,6 +49,7 @@ return(
             <Route path="/jobs" element={ <Jobs /> } />
             <Route path="/notifications" element={ <Notifications /> } />
             <Route path="/chats" element={ <Chat /> } />
+            <Route path="/myprofile" element={ <MyProfile /> } />
             <Route path="*" element={ <Error /> } />
             <Route path='/profile/:username' element={ <ProfileLayout /> } >
                 <Route index element={ <ProfileFeed /> } />

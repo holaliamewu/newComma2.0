@@ -8,7 +8,7 @@ export default function Footer() {
     const currentYear = date.getFullYear()
     console.log(currentYear)
   return (
-    <div className='flex bg-[#18181b] text-white  md:h-[60px]  xs:flex-col md:flex-row xs:items-start md:items-center justify-between xs:px-[20px] md:px-[20vh] py-[40px] w-full  '>
+    <div className='flex absolute bottom-0 bg-[#18181b] text-white  md:h-[60px]  xs:flex-col md:flex-row xs:items-start md:items-center justify-between xs:px-[20px] md:px-[20vh] py-[40px] w-full  '>
         <NewCommaFooterSVG />
         <h3 className='text-[16px] font-SystemUi xs:mt-[20px] md:mt-0' >{currentYear} © New Comma</h3>
 

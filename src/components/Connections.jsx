@@ -12,7 +12,7 @@ const [ users, setUsers ] = useContext(UsersContext)
   const connectionsComponent = users.map( user => {
      const { name, username, profession } = user;
     return(
-      <section className='flex flex-col gap-[20px] shadow-sm rounded-[12px] py-[16px] px-[20px] border border-gray-100 ' >
+      <NavLink to={`/profile/${username}`} className='flex flex-col gap-[20px] shadow-sm rounded-[12px] py-[16px] px-[20px] border border-gray-100 ' >
       <span className="flex flex-col gap-[10px] " >
         <NavLink to='' className='flex items-center justify-center w-[64px] h-[64px] p-[10px] bg-[lightgray] border border-gray-100 rounded-full' >
           <img className='w-[64px] h-[64px] ' src={profilePhoto} />
@@ -29,7 +29,7 @@ const [ users, setUsers ] = useContext(UsersContext)
             <span className='w-fit flex items-center justify-center font-SFpro text-[14px]  px-[16px] h-[32px] rounded-[24px] border border-gray-200 ' >Copy link</span>
           </span>
         </span>
-    </section>   
+    </NavLink >   
    )
   })  
   return (

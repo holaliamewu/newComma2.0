@@ -6,7 +6,7 @@ import JobListings from '../components/JobListings'
 
 export default function Jobs() {
   return (
-    <div className='pb-[60px]' >
+    <div className='relative pb-[60px]' >
       <div className='flex flex-col items-center  gap-[8px] mx-auto bg-[url(https://newcomma.com/img/jobs/header-bg.jpeg)]  md:bg-center bg-cover md:h-[40vh] mt- '>
           <h2 className=' font-SFpro text-[30px] text-center my-[10px] font-semibold text-[#fff] xs:w-[254px] md:w-[550px]' >Find Your Dream Job</h2>
           <p className='xs:text-[14px] md:text-[16px] text-center text-[#fff] xs:w-[254px] md:w-[550px]' >NewComma is the heart of the creative community and the best

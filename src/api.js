@@ -1,6 +1,9 @@
 import { Server, Model } from 'miragejs';
 
 export function makeServer({ environment = 'development' } = {}) {
+
+  const date = new Date();
+  const currentDay = date.getDate()
   let server = new Server({
     environment,
 
@@ -11,13 +14,13 @@ export function makeServer({ environment = 'development' } = {}) {
     },
 
     seeds(server) {
-      server.create('user', { id: 1, name: 'Natalie Narh', username: 'natalie', location: 'London, UK', connected: false, profession: 'CEO & Co-founder NewComma', website: 'www.newcomma.com', posts: [{ timeMade: '1h', message: { text: 'Proud of you my sister @nakinarh.', images: '' }, likes: 5 }] });
-      server.create('user', { id: 2, name: 'Emeka Ndulue', username: 'emekandulue', location: 'Lagos, Nigeria', connected: true, profession: 'Videographer', website: '' });
-      server.create('user', { id: 3, name: 'Naki Narh', username: 'nakinarh', location: 'London, UK', connected: false, profession: 'Artist & illustrator', website: 'www.nakinarh.com', posts: [{ timeMade: '17 May, 2024', message: 'Testing layouts for my art print pop up tomorrow 🧚🏿‍♀️', likes: 8 }] });
-      server.create('user', { id: 4, name: 'Nigel Atta-Mensah', username: 'nigel', location: 'London, UK', connected: true, profession: 'Co-founder, NewComma', website: 'www.nigelam.com', posts: [{ timeMade: '4d', message: 'NewComma2.0 is coming. brace up💛!', likes: 15 }] });
-      server.create('user', { id: 5, name: 'Leslie Arkoful', username: 'leslie.arkoful', location: 'Accra, Ghana', connected: false, profession: 'Software Engineer - ArkinstaHQ', website: 'www.lesliearkoful.com', posts: [{ timeMade: '1w', message: 'Take a look at @NewCommaJobs', likes: 4 }] });
+      server.create('user', { id: 1, name: 'Natalie Narh', username: 'natalie', location: 'London, UK', connected: false, bookmarks: [] ,profession: 'CEO & Co-founder NewComma', website: 'www.newcomma.com', posts: [{ timeMade: '1h', message: { text: 'Proud of you my sister @nakinarh.', images: '' }, likes: 5 }] });
+      server.create('user', { id: 2, name: 'Emeka Ndulue', username: 'emekandulue', location: 'Lagos, Nigeria', connected: true, bookmarks: [] ,profession: 'Videographer', website: '' });
+      server.create('user', { id: 3, name: 'Naki Narh', username: 'nakinarh', location: 'London, UK', connected: false, bookmarks: [] ,profession: 'Artist & illustrator', website: 'www.nakinarh.com', posts: [{ timeMade: '17 May, 2024', message: 'Testing layouts for my art print pop up tomorrow 🧚🏿‍♀️', likes: 8 }] });
+      server.create('user', { id: 4, name: 'Nigel Atta-Mensah', username: 'nigel', location: 'London, UK', connected: true, bookmarks: [] ,profession: 'Co-founder, NewComma', website: 'www.nigelam.com', posts: [{ timeMade: '4d', message: 'NewComma2.0 is coming. brace up💛!', likes: 15 }] });
+      server.create('user', { id: 5, name: 'Leslie Arkoful', username: 'leslie.arkoful', location: 'Accra, Ghana', connected: false, bookmarks: [] ,profession: 'Software Engineer - ArkinstaHQ', website: 'www.lesliearkoful.com', posts: [{ timeMade: '1w', message: 'Take a look at @NewCommaJobs', likes: 4 }] });
 
-      server.create('job', { title: 'NC Fund: May', company: 'NC Fund', location: 'London, UK', timePosted: 'currentDay days', description: 'The NewComma Creative Fund is a monthly £100 microgrant to support an African/Black creative with no strings attached. This...', image: 'https://comma-uploads-production.s3.eu-west-2.amazonaws.com/Q3y7yZmcFrySz7UXcf6c7wkj' });
+      server.create('job', { title: 'NC Fund: May', company: 'NC Fund', location: 'London, UK', timePosted: `${currentDay} days`, description: 'The NewComma Creative Fund is a monthly £100 microgrant to support an African/Black creative with no strings attached. This...', image: 'https://comma-uploads-production.s3.eu-west-2.amazonaws.com/Q3y7yZmcFrySz7UXcf6c7wkj' });
       server.create('job', { title: 'Jr. frontend engineer', company: 'NewCommaHQ', location: 'London, UK', timePosted: '5 days', description: ' NewComma seeks an entry-level software engineer with frontend super-powers to join their team and make impact.', image: 'https://comma-uploads-production.s3.eu-west-2.amazonaws.com/H4nb73nx4X3wZyVs5SwdcatQ' });
       server.create('job', { title: 'Brand Designer', company: 'NewComma Jobs', location: 'remote', timePosted: 'a week', description: 'Are you a creative, business-driven designer who can use your skills to elevate the brand of a company. Join us...', image: 'https://comma-uploads-production.s3.eu-west-2.amazonaws.com/H4nb73nx4X3wZyVs5SwdcatQ' });
       server.create('job', { title: 'Digital Illustrator', company: 'NewComma Jobs', location: 'remote', timePosted: '2 weeks', description: 'Enjoy the art and the act of making things visually appealling ? Maybe you should join us to change the world while enjoying yourself along...', image: 'https://comma-uploads-production.s3.eu-west-2.amazonaws.com/H4nb73nx4X3wZyVs5SwdcatQ' });
@@ -41,6 +44,12 @@ export function makeServer({ environment = 'development' } = {}) {
       this.get('/users/:id', (schema, request) => {
         let id = request.params.id;
         return schema.users.find(id);
+      });
+
+      // New endpoint to search user by username
+      this.get('/users/username/:username', (schema, request) => {
+        let username = request.params.username;
+        return schema.users.findBy({ username });
       });
 
       this.post('/users', (schema, request) => {
