@@ -31,7 +31,6 @@ export default function Feed() {
       return;
     }
 
-    try {
       const newPost = {
         message: postContent,
         timeMade: new Date().toISOString(),
@@ -41,25 +40,8 @@ export default function Feed() {
       
       setPosts([newPost , ...posts])
 
-      const response = await fetch('/api/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newPost),
-      });
-
-      if (response.ok) {
-        alert('Post shared successfully');
-        setPostContent(''); // Clear the input field
-        setCharCount(0); // Reset character count
-      } else {
-        alert('Failed to share the post');
-      }
-    } catch (error) {
-      console.error('Error sharing the post:', error);
-      alert('An error occurred while sharing the post');
-    }
+        setPostContent(''); 
+        setCharCount(0); 
   };
 
   return (

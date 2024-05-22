@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { Outlet } from 'react-router'
 import defaultProfilePic from '../assets/pics/commaPic.svg'
+import { postsData, jobsData, usersData } from '../api'
 
 
 export const ProfilePhotoContext = createContext();
@@ -21,67 +22,11 @@ export default function Layout() {
   const [ comment, setComment ] = useState(false);
   const [ bookmark, setBookmark ] = useState(false)
   const [ showMiniMenu, setShowMiniMenu ] = useState(false)
-  const [ users, setUsers ] = useState( [])
-  const [ jobs, setJobs ] = useState( [])
-  const [ posts, setPosts ] = useState( [])
+  const [ users, setUsers ] = useState( usersData)
+  const [ jobs, setJobs ] = useState( jobsData)
+  const [ posts, setPosts ] = useState(postsData)
   const [ notifications, setNotifications ] = useState( [])
 
-
-  useEffect(() => {
-    const fetchUsers = async() => {
-      try{
-        const response = await fetch("/api/users")
-        if(!response.ok) {
-          throw new Error("Failed to fetch users")
-        }
-  
-        const data = await response.json();
-        setUsers(data.users)
-      } catch( error) {
-        console.error("Error fetching users: ", error)
-      }
-    }
-  
-    fetchUsers();
-  }, [])
-
-  useEffect( () => {
-
-    const fetchJobs = async () => {
-      try {
-        const response = await fetch("/api/jobs")
-        if(!response.ok) {
-          throw new Error("Failed to fetch Jobs")
-        }
-
-        const data = await response.json();
-        setJobs(data.jobs)
-      } catch( error ) {
-        console.error( "Error fetching jobs: ", error)
-      }
-    }
-
-    fetchJobs();
-  } , [])
-  
-  useEffect( () => {
-
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch("/api/posts")
-        if(!response.ok) {
-          throw new Error("Failed to fetch Posts")
-        }
-
-        const data = await response.json();
-        setPosts(data.posts)
-      } catch( error ) {
-        console.error( "Error fetching posts: ", error)
-      }
-    }
-
-    fetchPosts();
-  } , [])
   
   return (
   <ProfilePhotoContext.Provider value={[profilePhoto, setProfilePhoto]} >

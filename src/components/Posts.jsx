@@ -15,12 +15,7 @@ export default function Posts() {
       post.id === postId ? { ...post, likes: post.likes + 1, liked: !post.liked } : post
     );
     setPosts(updatedPosts);
-
-    try {
-      await fetch(`/api/posts/${postId}/like`, { method: 'POST' });
-    } catch (error) {
-      console.error('Error liking the post:', error);
-    }
+    
   };
 
   const handleComment = async (postId, comment) => {
@@ -29,15 +24,6 @@ export default function Posts() {
     );
     setPosts(updatedPosts);
 
-    try {
-      await fetch(`/api/posts/${postId}/comment`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ comment }),
-      });
-    } catch (error) {
-      console.error('Error commenting on the post:', error);
-    }
   };
 
   const handleBookmark = async (postId) => {
@@ -45,13 +31,7 @@ export default function Posts() {
       post.id === postId ? { ...post, bookmarked: !post.bookmarked } : post
     );
     setPosts(updatedPosts);
-
-    try {
-      await fetch(`/api/posts/${postId}/bookmark`, { method: 'POST' });
-    } catch (error) {
-      console.error('Error bookmarking the post:', error);
-    }
-  };
+  }
 
   const allPosts = posts.map((post) => {
     const { id, person, username, message, photos, likes, comments, bookmarked } = post;

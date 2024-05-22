@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { LocationSVG } from '../assets/svgs'
-import { NotificationsContext } from './Layout';
+import { NotificationsContext, UsersContext } from './Layout';
 
 export default function ProfileLayout() {
 
@@ -10,24 +10,8 @@ export default function ProfileLayout() {
     const [ currentProfile, setCurrentProfile ] = useState({});
     const [ notifications, setNotifications ] = useContext(NotificationsContext)
 
-    useEffect( () => {
-
-        const fetchParticulateProfile = async() => {
-            try{
-                const response = await fetch(`/api/users/username/${username}`)
-                if( !response.ok) {
-                    throw new Error("Error fetching this user's profile")
-                }
-                const data = await response.json();
-                setCurrentProfile(data.user)
-                console.log("current profile: " ,data)
-            } catch ( error ) {
-                console.error("Error fetching profile: ", error)
-            }
-        }
-
-        fetchParticulateProfile();
-    } ,[])
+    const users = useContext(UsersContext)
+    
 
   return (
     <>
