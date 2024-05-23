@@ -19,10 +19,12 @@ import MyProfile from './pages/MyProfile'
 export const SignInContext = createContext(); 
 export const WhereOnTheAppContext = createContext();
 export const FormContext = createContext();
+export const MyDataContext = createContext();
 
 export default function App() {
   
-  const [ isSignedIn, setSetIsSignedIn ] = useState(true);
+  const [ isSignedIn, setSetIsSignedIn ] = useState(false);
+  const [ myData, setMyData ] = useState({})
   const [ whereOnTheApp, setWhereOnTheApp ] = useState('feed')
   const [ form, setForm ] = useState({
     email: '',
@@ -31,13 +33,14 @@ export default function App() {
     username: '',
     password: '',
     newPassword: '',
-    consent: true
+    consent: false
   });
 
 return(
 <SignInContext.Provider value={[isSignedIn, setSetIsSignedIn ]} >
 <WhereOnTheAppContext.Provider value={[whereOnTheApp, setWhereOnTheApp ]} >
 <FormContext.Provider value={[ form, setForm ]} >
+<MyDataContext.Provider value={[ myData, setMyData ]} >
   <div className="" >
   {
     isSignedIn ? (
@@ -64,6 +67,7 @@ return(
     ) : (<GetStarted />)
   }
   </div>
+</MyDataContext.Provider>
 </FormContext.Provider>
 </WhereOnTheAppContext.Provider>
 </SignInContext.Provider>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BookmarkContext, CommentContext, JobsContext, LikeContext, PostsContext, ProfilePhotoContext, UsersContext } from './Layout';
-import { FormContext, WhereOnTheAppContext } from '../App';
+import { FormContext, MyDataContext, WhereOnTheAppContext } from '../App';
 import { GifSVG, ImageSVG, SmileySVG } from '../assets/svgs';
 import Posts from '../components/Posts';
 
@@ -15,6 +15,9 @@ export default function Feed() {
   const [users] = useContext(UsersContext);
   const [jobs] = useContext(JobsContext);
   const [ posts, setPosts ] =useContext(PostsContext)
+  const [ myData, setMyData ] = useContext(MyDataContext) 
+
+  console.log(myData)
 
   const [postContent, setPostContent] = useState('');
   const [charCount, setCharCount] = useState(0);
@@ -35,6 +38,8 @@ export default function Feed() {
         message: postContent,
         timeMade: new Date().toISOString(),
         likes: 0,
+        username: "holalia",
+        person: "Amewu Emmanuel Mensah"
         // Add other necessary fields like user details, photos, etc.
       };
       
@@ -53,17 +58,17 @@ export default function Feed() {
           </span>
           <span className='flex justify-between gap-5'>
             <span className='flex flex-col'>
-              <h3 className='text-[16px] font-SFpro'>Amewu Emmanuel</h3>
-              <h5 className='text-[14px] text-usernameColor font-SystemUi'>@holalia</h5>
+              <h3 className='text-[16px] font-SharpGroteskBold'>{myData.displayName}</h3>
+              <h5 className='text-[14px] text-usernameColor font-SystemUi'>@{`newcommauser${new Date().getMilliseconds() + new Date().getFullYear()}`}</h5>
             </span>
-            <NavLink to='/myprofile' className='text-[13px] font-SFpro text-newOrange'>My Profile</NavLink>
+            <NavLink to='/myprofile' className='text-[13px] font-SharpGroteskBold text-newOrange'>My Profile</NavLink>
           </span>
         </span>
 
         <span className='xs:hidden md:inline-block bg-white pt-[20px] pb-[16px] gap-[16px] rounded-[12px] shadow'>
           <span className='flex justify-between gap-5 px-[12px]'>
-            <h2 className='font-SFpro text-[18px] font-semibold'>Suggested Connections</h2>
-            <NavLink to='/explore' className='font-SFpro text-newOrange text-[13px]' onClick={() => setWhereOnTheApp('explore')}>
+            <h2 className='font-SharpGroteskBold text-[18px] font-semibold'>Suggested Connections</h2>
+            <NavLink to='/explore' className='font-SharpGroteskBold text-newOrange text-[13px]' onClick={() => setWhereOnTheApp('explore')}>
               See more
             </NavLink>
           </span>

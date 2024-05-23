@@ -1,19 +1,27 @@
 import React, { useContext, useState } from 'react'
 import mobileLogo from '../assets/pics/logo.png'
 import { NewCommaWhiteSVG, NewCommaCommaSVG } from '../assets/svgs'
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged,getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from '../config/firebase'
-import { FormContext, SignInContext, WhereOnTheAppContext } from '../App';
+import { FormContext, MyDataContext, SignInContext, WhereOnTheAppContext } from '../App';
 import { ref, push, set, query, get } from 'firebase/database';
 import { redirect } from 'react-router';
 
 
 export default function GetStarted() {
+  const provider = new GoogleAuthProvider();
   const [isSignedIn, setIsSignedIn ] = useContext(SignInContext)
   const [ whereOnTheApp, setWhereOnTheApp ] = useContext(WhereOnTheAppContext);
   const [ form, setForm ] = useContext(FormContext)
+  const [ myData, setMyData ] = useContext(MyDataContext)
   const [ userStatus, setUserStatus ] = useState('');
-  const [ error, setError ] = useState({ email: ''});
+  const [ errorEmail, setErrorEmail ] = useState("")
+  const [ errorPassword, setErrorPassword ] = useState("")
+  const [ errorNewPassword, setErrorNewPassword ] = useState("")
+  const [ errorUsername, setErrorUsername ] = useState("")
+  const [ errorFirstName, setErrorFirstName ] = useState("")
+  const [ errorLastName, setErrorLastName ] = useState("")
+  const [ errorConsent, setErrorConsent ] = useState("")
 
   function saveUserData() {
     set(ref(db, 'users/' + form?.username ), form)
@@ -28,11 +36,8 @@ export default function GetStarted() {
     e.preventDefault();
 
     if (!form.email) {
-        setError({
-            ...error,
-            email: 'Please provide an email'
-        });
-        console.log(error.email);
+        setErrorEmail('Please provide an email');
+        console.log(errorEmail);
         return;
     }
 
@@ -66,6 +71,7 @@ export default function GetStarted() {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
+      setMyData(user);
       const uid = user.uid;
       setIsSignedIn(true)
       redirect("/")
@@ -74,6 +80,44 @@ export default function GetStarted() {
     }
   });
 
+  function handleGoogleSignup(e) {
+    e.preventDefault();
+  
+    // Add additional scopes
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  
+    // Set the language code
+    const auth = getAuth();
+    auth.languageCode = 'it';
+  
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        console.log('User:', user);
+        console.log('Token:', token);
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.error('Error code:', errorCode);
+        console.error('Error message:', errorMessage);
+        console.error('Email:', email);
+        console.error('Credential:', credential);
+        // ...
+      });
+  }
+  
   function handleEmailSignup(e) {
     e.preventDefault()
     createUserWithEmailAndPassword(auth, form.email, form.newPassword)
@@ -86,7 +130,30 @@ export default function GetStarted() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setError(errorMessage)
+        if( errorMessage === "auth/weak-password" ) {
+          setErrorNewPassword( "weak Password")
+        }
+        if( errorMessage === "auth/invalid-email" ) {
+          setErrorEmail( "Enter a proper email")
+        }
+        if( errorMessage === "auth/email-already-in-use" ) {
+          setErrorEmail( "Email is already in use")
+        }
+        if(!form.firstName){
+          setErrorFirstName("You forgot to enter your first name")
+        }
+        if(!form.lastName){
+          setErrorLastName("You forgot to enter your last name")
+        }
+        if(!form.newPassword){
+          setErrorNewPassword("Your Password, please")
+        }
+        if(!form.consent){
+          setErrorConsent("Your consent is needed here")
+        }
+        if(!form.username){
+          setErrorUsername("Get yourself a username")
+        }
         console.log(errorCode)
         console.log(errorMessage)
       });
@@ -103,7 +170,12 @@ export default function GetStarted() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setError(errorMessage)
+        if( errorMessage === "auth/wrong-password" ) {
+          setErrorPassword( "wrong Password")
+        }        
+        if(!form.password){
+          setErrorPassword("Your Password, please")
+        }
         console.log(errorCode)
         console.log(errorMessage)
 
@@ -158,8 +230,8 @@ export default function GetStarted() {
           value={form.email}
           onChange={ handleChange } 
           className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
-          { error.email && !form.email &&
-            <p className='text-red-400 text-[14px] font-SystemUi' >{error.email}</p>
+          { errorEmail &&
+            <p className='text-red-400 text-[14px] font-SystemUi' >{errorEmail}</p>
           }
           </span>      
         {
@@ -174,6 +246,9 @@ export default function GetStarted() {
               value={form.password}
               onChange={ handleChange } 
               className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
+              { errorPassword && !form.password &&
+                <p className='text-red-400 text-[14px] font-SystemUi' >{errorPassword}</p>
+              }
               </span>      
 
           ) :
@@ -190,6 +265,9 @@ export default function GetStarted() {
                   value={form.firstName}
                   onChange={ handleChange } 
                   className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
+                  { errorFirstName && !form.firstName &&
+                    <p className='text-red-400 text-[14px] font-SystemUi' >{errorFirstName}</p>
+                  }
                   </span>      
               <span className='flex flex-col gap-[5px] w-[50%] ' >
                   <label 
@@ -201,6 +279,9 @@ export default function GetStarted() {
                   value={form.lastName}
                   onChange={ handleChange } 
                   className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
+                  { errorLastName && !form.lastName &&
+                    <p className='text-red-400 text-[14px] font-SystemUi' >{errorLastName}</p>
+                  }
                   </span>      
             </span>
               <span className='flex flex-col gap-[5px] ' >
@@ -213,6 +294,9 @@ export default function GetStarted() {
                   value={form.username}
                   onChange={ handleChange } 
                   className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
+                  { errorUsername && !form.username &&
+                    <p className='text-red-400 text-[14px] font-SystemUi' >{errorUsername}</p>
+                  }
                   </span>      
               <span className='flex flex-col gap-[5px] ' >
                   <label 
@@ -224,15 +308,22 @@ export default function GetStarted() {
                   value={form.newPassword}
                   onChange={ handleChange }
                   className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
+                  { errorNewPassword && !form.newPassword &&
+                    <p className='text-red-400 text-[14px] font-SystemUi' >{errorNewPassword}</p>
+                  }
                   </span>      
                   <span className="flex gap-[8px]">
                   <input 
                   type='checkbox' 
                   name='consent'
                   checked={form.consent}
+                  onChange={ handleChange }
                   className=' border-b border-b-[lightgray] outline-none focus:border-b-[black]  ' />
                   <p className="text-[12px] leading-[1.2] " >By ticking this box, you agree to receive email communications from NewComma</p>
                   </span>
+                  { errorConsent && !form.consent &&
+                    <p className='text-red-400 text-[14px] font-SystemUi' >{errorConsent}</p>
+                  }
 
                   <p className="text-[13px] text-[#a1a1aa] font-SFpro leading-[1.7]" >
                   By clicking Create Account, I agree that I have read and accepted the <span className="text-[#27272a]" >Terms of Use</span> and <span className="text-[#27272a]" >Privacy Policy</span>
@@ -259,6 +350,7 @@ export default function GetStarted() {
           }
           { userStatus === '' &&
             <button 
+            onClick={ handleGoogleSignup }
             className='flex items-center justify-center border text-[#222] border-[#fccb00] font-SFpro font-[600] w-fit h-[40px] px-[24px] rounded-[24px] bg-[#fff]' >Continue with Google</button>
           }
       </span>

@@ -69,7 +69,7 @@ export default function MiniMenu() {
         </span>
         <h5 className='text-[16px] font-SFpro' >Settings</h5>
         </NavLink>        
-        <NavLink to='' className='flex h-[51px] p-[15px] gap-[8px] border-y border-y-gray-200 ' > 
+        <NavLink onClick={ handleSignOut } to='' className='flex h-[51px] p-[15px] gap-[8px] border-y border-y-gray-200 ' > 
         <span className='w-[20px]' >
           <LogoutSVG /> 
         </span>
