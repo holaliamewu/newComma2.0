@@ -38,7 +38,7 @@ export default function Layout() {
   <JobsContext.Provider value={[jobs, setJobs]} >
   <PostsContext.Provider value={[posts, setPosts]} >
   <NotificationsContext.Provider value={[notifications, setNotifications]} >
-    <div>
+    <div className=' '>
         <Navbar />
         <Outlet />
     </div>

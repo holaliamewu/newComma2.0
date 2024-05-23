@@ -41,7 +41,7 @@ return(
 <WhereOnTheAppContext.Provider value={[whereOnTheApp, setWhereOnTheApp ]} >
 <FormContext.Provider value={[ form, setForm ]} >
 <MyDataContext.Provider value={[ myData, setMyData ]} >
-  <div className="" >
+  <div className="max-w-[2560px] max-h-[1440px]" >
   {
     isSignedIn ? (
       <BrowserRouter >

@@ -3,14 +3,16 @@ import { Outlet, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { LocationSVG } from '../assets/svgs';
 import { NotificationsContext, UsersContext } from './Layout';
-
+import loader  from '../components/loader';
 export default function ProfileLayout() {
     const { username } = useParams();
+    const [ loading, setLoader ] = useState(false)
     const [currentProfile, setCurrentProfile] = useState([]);
     const [notifications, setNotifications] = useContext(NotificationsContext);
 
     const users = useContext(UsersContext);
     console.log(users)
+
     useEffect(() => {
         
             const filteredUser = users[0].filter(user => user.username === username);
@@ -26,7 +28,9 @@ export default function ProfileLayout() {
             <span>
                 <img src="" alt="Profile" />
             </span>
-            <div className='w-[1000px] mx-auto'>
+            <div
+            loading={<loader />}
+            className='w-[1000px] mx-auto'>
                 <span className='bg-green-500'>
                     <span>
                         <h2 className='text-[25px] font-SharpGroteskBold'>{currentProfile?.name}</h2>

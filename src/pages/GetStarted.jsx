@@ -195,7 +195,7 @@ export default function GetStarted() {
 
 
   return (
-    <div className='flex gap-[20px] font-SystemUi '>
+    <div className='flex gap-[20px]  font-SystemUi '>
     <div 
     style={{
       backgroundImage: `url(https://newcomma.com/images/naki2.webp)`

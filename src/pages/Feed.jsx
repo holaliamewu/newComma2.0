@@ -50,7 +50,7 @@ export default function Feed() {
   };
 
   return (
-    <main className='flex xs:flex-col md:flex-row xs:items-center md:items-start relative md:px-[15vw] bg-[#fafafa] gap-[20px] pt-[60px] z-0'>
+    <main className='flex xs:flex-col md:flex-row xs:items-center md:items-start relative md:px-[15vw] bg-[#fafafa] gap-[35px] pt-[60px] z-0'>
       <div className='flex flex-col justify-between bg-inherit xs:w-[90%] md:w-[40%] md:h-[80vh] md:pt-[-140px] md:sticky md:top-[100px]'>
         <span className='flex p-2'>
           <span className='w-[36px] rounded-full flex items-center justify-center'>

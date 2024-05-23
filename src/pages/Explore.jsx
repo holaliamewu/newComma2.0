@@ -16,27 +16,11 @@ export default function Explore() {
         <h1 className=' xs:text-[50px] md:text-[90px]  font-SharpGroteskBold font-bold md:pt-[63px]   ' >Comma Community</h1>
         <span className='flex w-fit h-[53px] bg-[#f4f4f5] p-[6px] rounded-full mt-[24px] mb-[56px] ' >
             <NavLink 
-            style={
-                ({isActive}) => {
-                return {
-                        backgroundColor: isActive ? 'black' : '#f4f4f5',
-                        color: isActive ? 'white' : 'black'
-                    }
-                }
-            }
-            className="flex items-center justify-center text-[16px] p-[10px] rounded-full font-SystemUi"
-            to='' >All users</NavLink>
+            className='flex items-center justify-center text-[16px] p-[10px] rounded-full font-SystemUi focus:bg-black bg-white focus:text-white text-black '
+            to='/explore' >All users</NavLink>
             <NavLink 
-            style={
-                ({isActive}) => {
-                return {
-                        backgroundColor: isActive ? 'black' : '#f4f4f5',
-                        color: isActive ? 'white' : 'black'
-                    }
-                }
-            }
-            className='flex items-center justify-center text-[16px] p-[10px] rounded-full font-SystemUi '
-            to='yourConnections' >Your connections</NavLink>
+            className='flex items-center justify-center text-[16px] p-[10px] rounded-full font-SystemUi focus:bg-black bg-white focus:text-white text-black '
+            to='/explore?type=connected' >Your connections</NavLink>
         </span>
 
         <span className='flex xs:gap-[8px]  ' >

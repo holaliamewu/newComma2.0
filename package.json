@@ -12,6 +12,7 @@
   "dependencies": {
     "classnames": "^2.5.1",
     "firebase": "^10.12.0",
+    "ldrs": "^1.0.1",
     "miragejs": "^0.1.48",
     "mongoose": "^8.4.0",
     "react": "^18.2.0",

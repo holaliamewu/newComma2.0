@@ -1,16 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useSearchParams } from 'react-router-dom'
 import { BookmarkSVG, LocationSVG, MoreSVG, TimeSVG } from '../assets/svgs'
 import { JobsContext } from '../pages/Layout'
 
 export default function JobListings() {
 
   const [ jobs, setJobs ] = useContext(JobsContext)
+  const [ searchParams, setSearchParams] = useSearchParams()
 
+  const typeFilter = searchParams.get("type");
 
-  console.log(jobs)
+  const filteredJobs =  typeFilter ? 
+  jobs.filter(job => {
+    console.log('Job Type:', job.type); 
+    return job.type?.toLowerCase() === typeFilter.toLowerCase();
+  }) : 
+  jobs;
 
-  const allJobs = jobs.map((job) => {
+  console.log(filteredJobs)
+
+  const allJobs = filteredJobs.map((job) => {
     const { title, company, image, location, timePosted, description } = job;
     return (
       <div key={company} className='px-[20px] py-[15px] rounded-[12px] border border-gray-100'>
