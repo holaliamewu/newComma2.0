@@ -2,15 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { LocationSVG } from '../assets/svgs';
-import { NotificationsContext, UsersContext } from './Layout';
+import { ProfilePhotoContext, NotificationsContext, UsersContext } from './Layout';
 import loader  from '../components/loader';
+
 export default function ProfileLayout() {
     const { username } = useParams();
     const [ loading, setLoader ] = useState(false)
     const [currentProfile, setCurrentProfile] = useState([]);
     const [notifications, setNotifications] = useContext(NotificationsContext);
+    const [ profilePhoto ] = useContext(ProfilePhotoContext)
 
     const users = useContext(UsersContext);
+
     console.log(users)
 
     useEffect(() => {
@@ -26,13 +29,16 @@ export default function ProfileLayout() {
     return (
         <>
             <span>
-                <img src="" alt="Profile" />
+                <img src="https://newcomma.com/img/base-banner.png" alt="Profile" />
             </span>
             <div
             loading={<loader />}
             className='w-[1000px] mx-auto'>
-                <span className='bg-green-500'>
+                <span className=''>
                     <span>
+                    <span className='flex w-[24px] rounded-full' >
+                     <img className='w-[24px]' src={profilePhoto} />
+                   </span>
                         <h2 className='text-[25px] font-SharpGroteskBold'>{currentProfile?.name}</h2>
                         <h5 className='text-[16px] font-SystemUi'>@{currentProfile?.username}</h5>
                     </span>
@@ -43,7 +49,6 @@ export default function ProfileLayout() {
                         }} 
                         type="button"
                     >
-                        {currentProfile?.connected ? "You're friends" : "Connect"}
                     </button>
                     <section className='flex mt-[30px] mb-[20px] gap-[16px]'>
                         <span className='flex items-center'>
