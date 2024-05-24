@@ -23,15 +23,21 @@ export default function GetStarted() {
   const [ errorLastName, setErrorLastName ] = useState("")
   const [ errorConsent, setErrorConsent ] = useState("")
 
-  function saveUserData() {
-    set(ref(db, 'users/' + form?.username ), form)
-    .then(() => {
-      console.log('user data saved successfully!')
-    })
-    .catch((error) => {
-      console.log('could not save data')
-    });
+  
+
+  async function getUserData() {
+  
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      console.log('User data retrieved from localStorage:', JSON.parse(userData));
+      setMyData(JSON.parse(userData))
+      return JSON.parse(userData);
+    } else {
+      console.log('No data available for this user in localStorage');
+    }
   }
+  
+
   function checkUserStatus(e) {
     e.preventDefault();
 
@@ -71,8 +77,8 @@ export default function GetStarted() {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      setMyData(user);
       const uid = user.uid;
+      getUserData()
       setIsSignedIn(true)
       redirect("/")
     } else {
@@ -119,69 +125,69 @@ export default function GetStarted() {
   }
   
   function handleEmailSignup(e) {
-    e.preventDefault()
+    e.preventDefault();
     createUserWithEmailAndPassword(auth, form.email, form.newPassword)
       .then((userCredential) => {
-        const user = userCredential.user;
-        saveUserData();
-        setIsSignedIn(true)
-        console.log(user)
+        localStorage.setItem('userData', JSON.stringify(form));
+        getUserData(form)
+        setIsSignedIn(true);
+        console.log(myData);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        if( errorMessage === "auth/weak-password" ) {
-          setErrorNewPassword( "weak Password")
+        if (errorMessage === "auth/weak-password") {
+          setErrorNewPassword("Weak Password");
         }
-        if( errorMessage === "auth/invalid-email" ) {
-          setErrorEmail( "Enter a proper email")
+        if (errorMessage === "auth/invalid-email") {
+          setErrorEmail("Enter a proper email");
         }
-        if( errorMessage === "auth/email-already-in-use" ) {
-          setErrorEmail( "Email is already in use")
+        if (errorMessage === "auth/email-already-in-use") {
+          setErrorEmail("Email is already in use");
         }
-        if(!form.firstName){
-          setErrorFirstName("You forgot to enter your first name")
+        if (!form.firstName) {
+          setErrorFirstName("You forgot to enter your first name");
         }
-        if(!form.lastName){
-          setErrorLastName("You forgot to enter your last name")
+        if (!form.lastName) {
+          setErrorLastName("You forgot to enter your last name");
         }
-        if(!form.newPassword){
-          setErrorNewPassword("Your Password, please")
+        if (!form.newPassword) {
+          setErrorNewPassword("Your Password, please");
         }
-        if(!form.consent){
-          setErrorConsent("Your consent is needed here")
+        if (!form.consent) {
+          setErrorConsent("Your consent is needed here");
         }
-        if(!form.username){
-          setErrorUsername("Get yourself a username")
+        if (!form.username) {
+          setErrorUsername("Get yourself a username");
         }
-        console.log(errorCode)
-        console.log(errorMessage)
+        console.log(errorCode);
+        console.log(errorMessage);
       });
   }
-
+  
   function handleEmailLogin(e) {
-    e.preventDefault()
+    e.preventDefault();
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        setIsSignedIn(true)
-        console.log(user)
+        getUserData(form)
+        setIsSignedIn(true);
+        console.log(myData);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        if( errorMessage === "auth/wrong-password" ) {
-          setErrorPassword( "wrong Password")
-        }        
-        if(!form.password){
-          setErrorPassword("Your Password, please")
+        if (errorMessage === "auth/wrong-password") {
+          setErrorPassword("Wrong Password");
         }
-        console.log(errorCode)
-        console.log(errorMessage)
-
-      })
-    } 
-
+        if (!form.password) {
+          setErrorPassword("Your Password, please");
+        }
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+  }
+  
 
   function handleChange(e) {
     console.log('something happened!')

@@ -52,6 +52,7 @@ export default function Navs() {
             Events
           </NavLink>
           <NavLink 
+          to='/myprofile'
           onClick={ ({isActive}) => {
             setWhereOnTheApp('profile')
           }}

@@ -30,6 +30,8 @@ const [ profilePhoto ] = useContext(ProfilePhotoContext)
                 <span className='flex w-[24px] rounded-full' >
                  <img className='w-[24px]' src={profilePhoto} />
                 </span>
+                <span className='' >
+                </span>
                 <h2 className='text-[25px] font-SharpGroteskBold' >{currentProfile?.name}</h2>
                 <h5 className='text-[16px] font-SystemUi' >@{currentProfile?.username}</h5>
             </span>

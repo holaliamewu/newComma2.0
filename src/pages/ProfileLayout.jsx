@@ -11,6 +11,7 @@ export default function ProfileLayout() {
     const [currentProfile, setCurrentProfile] = useState([]);
     const [notifications, setNotifications] = useContext(NotificationsContext);
     const [ profilePhoto ] = useContext(ProfilePhotoContext)
+    const [ connected, setConnected ] = useState(false)
 
     const users = useContext(UsersContext);
 
@@ -36,20 +37,28 @@ export default function ProfileLayout() {
             className='w-[1000px] mx-auto'>
                 <span className=''>
                     <span>
-                    <span className='flex w-[24px] rounded-full' >
-                     <img className='w-[24px]' src={profilePhoto} />
-                   </span>
-                        <h2 className='text-[25px] font-SharpGroteskBold'>{currentProfile?.name}</h2>
-                        <h5 className='text-[16px] font-SystemUi'>@{currentProfile?.username}</h5>
-                    </span>
-
-                    <button 
+                    <span className='flex w-[96px] rounded-full mt-[-50px] ' >
+                        <img className='w-[90px]' src={profilePhoto} />
+                     </span>
+                     <span className='flex items-center justify-between' >
+                        <span className='' >
+                            <h2 className='text-[25px] font-SharpGroteskBold'>{currentProfile?.name}</h2>
+                            <h5 className='text-[16px] font-SystemUi'>@{currentProfile?.username}</h5>
+                        </span>
+                        { !currentProfile.connected && <button 
+                        className="bg-[#fccb00] p-4 py-2 rounded-[12px] text-black font-SharpGroteskBold " 
                         onClick={() => { 
-                            setNotifications([`You just made a connection with ${currentProfile?.name}`, ...notifications]);
-                        }} 
-                        type="button"
-                    >
-                    </button>
+                                setConnected(prev => !prev)
+                                setNotifications([`You just made a connection with ${currentProfile?.name}`, ...notifications]);
+                            }} 
+                            type="button"
+                        >
+                        { connected ? "Undo Connection" : "Connect"}
+                        </button>}
+                     </span>
+                    </span>
+                    
+
                     <section className='flex mt-[30px] mb-[20px] gap-[16px]'>
                         <span className='flex items-center'>
                             <span className='flex w-[12px]'>
