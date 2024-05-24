@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { LocationSVG } from '../assets/svgs';
+import { LinkSVG, LocationSVG } from '../assets/svgs';
 import { ProfilePhotoContext, NotificationsContext, UsersContext } from './Layout';
 import loader  from '../components/loader';
 
@@ -66,12 +66,12 @@ export default function ProfileLayout() {
                             </span>
                             <h6 className='text-[14px] ml-[10px]'>{currentProfile?.location}</h6>
                         </span>
-                        <span className='flex items-center'>
-                            <span className='flex w-[12px]'>
-                                <LocationSVG />
-                            </span>
-                            <NavLink className='text-[14px] ml-[10px]' to={currentProfile?.website}>{currentProfile?.website}</NavLink>
-                        </span>
+                        { currentProfile.website && <span className='flex items-center'>
+                                                                        <span className='flex w-[12px]'>
+                                                                            <LinkSVG />
+                                                                        </span>
+                                                                        <NavLink className='text-[14px] ml-[10px] text-[#f97316] ' to={currentProfile?.website}>{currentProfile?.website}</NavLink>
+                                                                    </span>}
                     </section>
                     <h6 className='text-[14px]'>{currentProfile?.profession}</h6>
                     <nav className='flex mt-[40px] mb-[50px] py-[10px] w-full'>
