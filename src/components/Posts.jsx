@@ -13,34 +13,33 @@ export default function Posts() {
 
   const handleLike = (postId) => {
     const updatedPosts = posts.map((post) =>
-      post.id === postId ? { ...post, likes: post.likes + 1, liked: !post.liked } : post
+      post.postId === postId ? { ...post, likes: post.liked ? post.likes - 1 : post.likes + 1, liked: !post.liked } : post
     );
-    setPosts([...updatedPosts]);
+    setPosts(updatedPosts);
   };
-  
+
   const handleComment = (postId, comment) => {
     const updatedPosts = posts.map((post) =>
-      post.id === postId ? { ...post, comments: [...post.comments, comment] } : post
+      post.postId === postId ? { ...post, comments: [...post.comments, comment] } : post
     );
-    setPosts([...updatedPosts]);
+    setPosts(updatedPosts);
   };
-  
+
   const handleBookmark = (postId) => {
     const updatedPosts = posts.map((post) =>
-      post.id === postId ? { ...post, bookmarked: !post.bookmarked } : post
+      post.postId === postId ? { ...post, bookmarked: !post.bookmarked } : post
     );
-    setPosts([...updatedPosts]);
+    setPosts(updatedPosts);
   };
-  
 
   return (
-    <div className='flex flex-col gap-[24px]'>
+    <div className='flex flex-col gap-[24px] pb-[50px]'>
       {posts && posts.length > 0 ? (
         posts.map((post) => {
-          const { id, person, username, message, photos, likes, comments, bookmarked } = post;
+          const { postId, person, username, message, photos, likes, comments, bookmarked } = post;
 
           return (
-            <span key={id} className='bg-white rounded-[12px] shadow mb-[16px]'>
+            <span key={postId} className='bg-white rounded-[12px] shadow mb-[16px]'>
               <span className='flex justify-between mb-[16px] px-[24px] pt-[24px]'>
                 <span className='flex gap-[16px]'>
                   <NavLink to={`/profile/${username}`}>
@@ -64,18 +63,18 @@ export default function Posts() {
                 )}
               </span>
               <span className='flex items-center px-[24px] mb-[16px] gap-[12px]'>
-                <span className='w-[32px] flex items-center justify-center' onClick={() => handleLike(id)}>
+                <span className='w-[32px] flex items-center justify-center' onClick={() => handleLike(postId)}>
                   <LikeSVG /> {likes > 0 ? likes : ''}
                 </span>
-                <span className='w-[32px] flex items-center justify-center' onClick={() => setActiveCommentPostId(activeCommentPostId === id ? null : id)}>
+                <span className='w-[32px] flex items-center justify-center' onClick={() => setActiveCommentPostId(activeCommentPostId === postId ? null : postId)}>
                   <CommentSVG /> {comments && comments.length > 0 ? comments.length : ""}
                 </span>
-                <span className='w-[32px] flex items-center justify-center' onClick={() => handleBookmark(id)}>
+                <span className='w-[32px] flex items-center justify-center' onClick={() => handleBookmark(postId)}>
                   <BookmarkSVG />
                 </span>
               </span>
-              {activeCommentPostId === id && (
-                <CommentInput onSubmit={(comment) => handleComment(id, comment)} />
+              {activeCommentPostId === postId && (
+                <CommentInput onSubmit={(comment) => handleComment(postId, comment)} />
               )}
             </span>
           );
@@ -86,4 +85,3 @@ export default function Posts() {
     </div>
   );
 }
-

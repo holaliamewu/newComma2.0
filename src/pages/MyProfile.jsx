@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { LocationSVG } from '../assets/svgs'
+import { LocationSVG, LinkSVG } from '../assets/svgs'
 import { ProfilePhotoContext } from './Layout';
 
 export default function ProfileLayout() {
@@ -24,7 +24,7 @@ const [ profilePhoto ] = useContext(ProfilePhotoContext)
         <span className='' >
             <img src="https://newcomma.com/img/base-banner.png" />
         </span>
-    <div className='w-[1000px] mx-auto'>
+    <div className='w-[1000px] mx-auto xs:h-[30vh] md:h-full'>
         <span className='bg-green-500' >
             <span className='' >
                 <span className='flex w-[24px] rounded-full' >
@@ -44,7 +44,7 @@ const [ profilePhoto ] = useContext(ProfilePhotoContext)
                 </span>
                 <span className='flex items-center' >
                     <span className='flex w-[12px] ' >
-                        <LocationSVG />
+                        <LinkSVG />
                     </span>
                     <NavLink className='text-[14px] ml-[10px] ' >{currentProfile.website}</NavLink>
                 </span>
