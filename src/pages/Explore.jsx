@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { MagnifyingGlassSVG } from '../assets/svgs'
 import Connections from '../components/Connections'
 
 export default function Explore() {
 
-    function handleSearch() {
-        return(
-            console.log('you searched for something. hoorayy!')
-        )
+    const [ newTypeFilter, setNewTypeFilter ] = useState("");
+    function handleSearch(e) {
+            setNewTypeFilter(e.target.value)
     }
   return (
     <div className='w-[100%]'>
@@ -28,13 +27,14 @@ export default function Explore() {
             <input 
                 type='text' 
                 name='searchbox' 
+                value={newTypeFilter}
                 onChange={handleSearch} 
                 placeholder='Looking for a specific person? Type their name here and hit search!'
                 className='flex xs:w-[100%] md:w-[500px] text-[13px] md:px-[20px] py-[30px] ' /> 
         </span>
     </div>
 
-    <Connections />
+    <Connections newTypeFilter={newTypeFilter} />
     </div>
   )
 }
