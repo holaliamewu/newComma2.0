@@ -162,6 +162,7 @@ const usersData = [
       postId: 2,
       timeMade: '1h',
       message: 'Proud of you my sister @nakinarh.',
+      likes: 0,
       photos: 'https://comma-uploads-production.s3.eu-west-2.amazonaws.com/H59LsazfAwZouNetYnV38QXm',
       comments: [{ person: '', username: '', message: '', timeMade: '' }]
   },
@@ -170,6 +171,7 @@ const usersData = [
       username: 'emekaindulue',
       postId: 3,
       timeMade: '3d',
+      likes: 0,
       message: 'I think the idea of proportion most times, and this "it\'s always been done this way" mentality, is sort of confining and most importantly a creative killer. Immerse yourself in the process, let it all out, what\'s the worse that can happen, what do you have to lose?',
       photos: '',
       comments: [{ person: '', username: '', message: '', timeMade: '' }]
@@ -179,6 +181,7 @@ const usersData = [
       username: 'lesliearkoful',
       postId: 4,
       timeMade: '1w',
+      likes: 0,
       message: 'Take a look at @NewCommaJobs.',
       photos: '',
       comments: [{ person: '', username: '', message: '', timeMade: '' }]
