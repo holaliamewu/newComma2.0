@@ -15,6 +15,7 @@ export default function MiniMenu() {
 
     signOut(auth).then(() => {
       // Sign-out successful.
+      localStorage.clear()
     setIsSignedIn(false)
     }).catch((error) => {
       // An error happened.

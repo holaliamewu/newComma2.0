@@ -68,9 +68,9 @@ const fullName = `${myData.firstName} ${myData.lastName}`
           </span>
           <span className='flex justify-between gap-5'>
             <span className='flex flex-col'>
-              <h3 className='text-[16px] font-SharpGroteskBold'>{fullName}</h3>
+              <h3 className='text-[16px] font-SharpGroteskBold'>{ !myData.firstName ? myData.displayName : fullName }</h3>
               <h5 className='text-[14px] text-usernameColor font-SystemUi'>
-                @{myData.username}
+                @{ !myData.username ? myData.email : myData.username}
               </h5>
             </span>
             <NavLink to='/myprofile' className='text-[13px] font-SharpGroteskBold text-newOrange'>

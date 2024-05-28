@@ -33,7 +33,8 @@ export default function App() {
     username: '',
     password: '',
     newPassword: '',
-    consent: false
+    consent: false, 
+    displayName: ""
   });
 
 return(
