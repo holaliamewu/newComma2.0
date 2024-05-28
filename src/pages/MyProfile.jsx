@@ -3,28 +3,24 @@ import { Outlet, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { LocationSVG, LinkSVG } from '../assets/svgs'
 import { ProfilePhotoContext } from './Layout';
+import { MyDataContext } from '../App';
 
 export default function ProfileLayout() {
 
-const currentProfile = {
-    name: "Amewu Emmanuel Mensah",
-    username: "holalia",
-    location: "Accra, Ghana",
-    profession: "frontend eng with a keen eye for aesthetics.",
-    website: "holalia.co.uk"
-}
 
+const [myData] = useContext(MyDataContext)
 const [ profilePhoto ] = useContext(ProfilePhotoContext)
 
-    const { name, username, location, profession, website } = currentProfile;
+    const { firstName, lastName, username, email, displayName } = myData;
+    const fullName = `${firstName} ${lastName}`
 
 
   return (
     <>
-        <span className='' >
-            <img src="https://newcomma.com/img/base-banner.png" />
+        <span className='flex w-full xs:h-[30vh] md:h-fit' >
+            <img className='w-full' src="https://newcomma.com/img/base-banner.png" />
         </span>
-    <div className='w-[1000px] mx-auto xs:h-[30vh] md:h-full'>
+    <div className='max-w-[1000px] mx-auto xs:h-[30vh] md:h-full'>
         <span className='bg-green-500' >
             <span className='' >
                 <span className='flex w-[24px] rounded-full' >
@@ -32,30 +28,25 @@ const [ profilePhoto ] = useContext(ProfilePhotoContext)
                 </span>
                 <span className='' >
                 </span>
-                <h2 className='text-[25px] font-SharpGroteskBold' >{currentProfile?.name}</h2>
-                <h5 className='text-[16px] font-SystemUi' >@{currentProfile?.username}</h5>
+                <h2 className='text-[25px] font-SharpGroteskBold' >{!displayName ? fullName : displayName }</h2>
+                <h5 className='text-[16px] font-SystemUi' >@{!username ? email : username}</h5>
             </span>
             <section className='flex mt-[30px] mb-[20px] gap-[16px] ' >
                 <span className='flex items-center ' >
-                <span className='flex w-[12px] ' >
-                    <LocationSVG />
-                </span>
-                <h6 className='text-[14px] ml-[10px] ' >{currentProfile?.location}</h6>
                 </span>
                 <span className='flex items-center' >
                     <span className='flex w-[12px] ' >
                         <LinkSVG />
                     </span>
-                    <NavLink className='text-[14px] ml-[10px] ' >{currentProfile.website}</NavLink>
+                    <NavLink className='text-[14px] ml-[10px] ' >newcomma.com</NavLink>
                 </span>
             </section>
-            <h6 className='text-[14px] ' >{currentProfile.profession}</h6>
-            <nav className='flex mt-[40px] mb-[50px] py-[10px] w-full  ' >
-                <NavLink to={`/profile/${username}/`} className='w-full font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >Feed</NavLink>
-                <NavLink to={`/profile/${username}/portfolio`} className='w-full font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >Portfolio</NavLink>
-                <NavLink to={`/profile/${username}/bookmark`} className='w-full font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >Bookmark</NavLink>
-                <NavLink to={`/profile/${username}/about`} className='w-full font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >About</NavLink>
-                <NavLink to={`/profile/${username}/connection`} className='w-full font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >Connections</NavLink>
+            <nav className='flex max-w-[1000px] mt-[40px] mb-[50px] py-[10px] w-full  ' >
+                <NavLink to={`/profile/${username}/`} className='md:w-full font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >Feed</NavLink>
+                <NavLink to={`/profile/${username}/portfolio`} className='w-full xs:hidden md:flex font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >Portfolio</NavLink>
+                <NavLink to={`/profile/${username}/bookmark`} className='w-full xs:hidden md:flex font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >Bookmark</NavLink>
+                <NavLink to={`/profile/${username}/about`} className='w-full xs:hidden md:flex font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >About</NavLink>
+                <NavLink to={`/profile/${username}/connection`} className='w-full xs:hidden md:flex font-SharpGroteskBold text-center border-b focus:border-b focus:border-black' >Connections</NavLink>
             </nav>
         </span>
         <Outlet />
